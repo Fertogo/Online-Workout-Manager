@@ -29,18 +29,18 @@ $(document).ready(function(){
         $("#titletext").html("<h3>" + $("#title").val()+ "</h3>");
     });
 
-    $("#move-type").change(function(){
-        if ($("#move-type").is(':checked')) {  //Go into rep mode
-            $("#min-slider-container").hide();
-            $("#sec-slider-label").html("Repetitions");
-        }
-        else {
-            $("#minute-slider").val(0);
-            $("#minute-slider").slider("refresh");
-            $("#min-slider-container").show();
-            $("#sec-slider-label").html("Seconds");
-        }
-    });
+    // $("#move-type").change(function(){
+    //     if ($("#move-type").is(':checked')) {  //Go into rep mode
+    //         $("#min-slider-container").hide();
+    //         $("#sec-slider-label").html("Repetitions");
+    //     }
+    //     else {
+    //         $("#minute-slider").val(0);
+    //         $("#minute-slider").slider("refresh");
+    //         $("#min-slider-container").show();
+    //         $("#sec-slider-label").html("Seconds");
+    //     }
+    // });
 
     // Add move the the workout based on current inputs
     $("#add-move").click(function(){
@@ -55,7 +55,8 @@ $(document).ready(function(){
             $("#error1").html("Please enter a move title").fadeIn();
         }
 
-        $("#move-type").is(':checked') ?  addRepMove(move, secs) : addTimeMove(move, mins, secs);
+        // $("#move-type").is(':checked') ?  addRepMove(move, secs) : addTimeMove(move, mins, secs);
+        addTimeMove(move, mins, secs);
 
     });
 

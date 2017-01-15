@@ -1,7 +1,6 @@
 <!--
-    Pebble Workout timer. By Fernando Trujano
+    Online Workout Manager. By Fernando Trujano
     trujano@mit.edu
-    v2.2 Lets users see and edit workouts online.
 -->
 
 <html>
@@ -15,21 +14,20 @@
         <div data-role="page" id="main">
 
             <div data-role="content">
-                <div class="error" id="update" hidden><strong> There is an update for this app available on the Pebble appstore. <a href="pebble://appstore/53b8f8d4c09b06bcc7000007"> Click here to update! </a>   </strong> </div>
-                <div class="error" id="new" hidden > As you probably already know, Pebble is shutting down. As such, I will no longer be updating this app regularly. However, the online workout manager and app will continue to work and I am in the process of rewriting the app for Android Wear. I will also provide an easy way to transfer your current workouts to an Android Wear device. If you have an Android Wear device, and would like to beta test the new version, please contact me at trujano@mit.edu.  </div>
+                <div class="error" id="update" hidden><strong> There is an update for this app available on the Play Store <a href="https://play.google.com/store/apps/details?id=com.trujano.customworkouttimern"> Click here to update! </a>   </strong> </div>
+                <div class="success" id="new" hidden > Welcome to the Online Workout Manager! From here you can add workouts and moves to use on your Android Wear device. This app is still in beta so please let me know if you find any bugs by emailing me at trujano@mit.edu</div>
                 <h2>Manage Workouts <a href="#info" data-transition="flip"><button data-inline="true" data-mini="true" data-icon="info"> FAQ </button></a></h2>
                 <div id="loading" class="info">Loading your workouts, please wait. </div>
                 <div data-role="collapsibleset" data-content-theme="a" data-iconpos="left" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" id="workout-list">
                 </div>
-                <a href="#add"><button data-inline="true" data-mini="true" data-icon="plus"> Add Workout </button></a>
+                <a href="#add"><button data-inline="true"  data-icon="plus"> Add Workout </button></a>
+                <button id = "save-btn" data-inline="true" class="ui-btn-active" data-icon="check"> Save</button>
+
                 <hr>
-                <fieldset class="ui-grid-a">
-                    <div class="ui-block-a" >  <a href="#" data-rel="back"><button id = "cancel-btn" data-theme="d" data-icon="delete" > Cancel </button> </a> </div>
-                    <div class="ui-block-b" > <button id = "save-btn" class="ui-btn-active" data-icon="check"> Save</button>  </div>
-                </fieldset>
-                <div class="info" id="heart" hidden > Before clicking save please consider supporting development by <a href="https://cash.me/$trujano">donating</a> or giving this app a &hearts; on the <a href="pebble://appstore/53b8f8d4c09b06bcc7000007"> App Store. </a> </div>
+
+                <!-- <div class="info" id="heart" hidden > Before clicking save please consider supporting development by <a href="https://cash.me/$trujano">donating</a> or giving this app a &hearts; on the <a href="pebble://appstore/53b8f8d4c09b06bcc7000007"> App Store. </a> </div> -->
                 <div class="error" id="main-error" hidden> Please add at least one workout to save </div>
-                <div class="success" id="success" hidden> Changes saved! Please open this on your phone (from the pebble app) and click save to appy changes on Pebble </div>
+                <div class="success" id="success" hidden> Changes saved! Make sure your watch is connected to your phone, then open the Custom Workout Timer app from your watch.</div>
                 <div class="info" id="bitly">Go to this link to make make changes from your computer! <br> <span id="bitly-link"></span>  </div>
             </div>
 
@@ -38,10 +36,10 @@
         <!-- FAQ Page -->
         <div data-role="page" id="info">
             <div data-role="content">
-                <h3> <a href="#main" data-transition="flip"><button data-inline="true" data-mini="true" data-icon="back"> Back</button></a> Frequently Asked Questions <small> Custom Workout Timer v4.0</small> </h1>
+                <h3> <a href="#main" data-transition="flip"><button data-inline="true" data-mini="true" data-icon="back"> Back</button></a> Frequently Asked Questions <small> Custom Workout Timer</small> </h1>
                 <ul data-role="listview">
                     <li> How do I add a workout?
-                        <p> On the Pebble app, find this app and click on the settings icon, then click on the "Add a workout button". Type in a workout title and add moves by using the sliders and textbox. You can add as many moves as you want.  When you are done, click on Add workout. Then click the blue "save" button. The workout should appear on your Pebble. </p>  </li>
+                        <p> On the main page (where you just came from), click on the "Add Workout". Type in a workout title and add moves by using the sliders and textbox. You can add as many moves as you want.  When you are done, click on Add workout. Then click the blue "save" button. The new workouts will now appear on your wearable device. </p>  </li>
                     <li> How do I delete a workout?
                         <p> Expand the workout you want to delete on the Online Workout Manager. Then click on the red "delete" button.  </p>  </li>
                     <li>  Can I add a move to an exisiting workout?
@@ -50,36 +48,34 @@
                         <p> Yes, after expanding the workout click on the move you'd like to edit. From there, you can change it's name, time or delete it. </p>  </li>
                     <li>  Can I reorder moves in my workout?
                         <p> Yes, after expanding the workout click and hold a move.  From there, you can drag it around to its desidred position. Don't forget to save!  </p>  </li>
-                    <li>  What's the difference between a "rep" and a "time" move?
-                        <p> When you add a move, you'll see a blue switch that will let you select between a rep and a time move. Time moves count down automatically and advance to the next move when the countdown reaches 0. Rep moves wait for you to manually advance the move the number of reps you specified before moving on </p>  </li>
-                    <li>  How do I skip a rep move?
-                        <p> In rep mode, the next button decrements the remaining reps by 1. To skip the move all together, simply press and hold the next button. </p>  </li>
+<!--                     <li>  What's the difference between a "rep" and a "time" move?
+                        <p> When you add a move, you'll see a blue switch that will let you select between a rep and a time move. Time moves count down automatically and advance to the next move when the countdown reaches 0. Rep moves wait for you to manually advance the move the number of reps you specified before moving on </p>  </li> -->
+<!--                     <li>  How do I skip a rep move?
+                        <p> In rep mode, the next button decrements the remaining reps by 1. To skip the move all together, simply press and hold the next button. </p>  </li> -->
                     <li>  Phone keyboards suck, can I do all of this from my computer?
-                        <p> Yes, you can manage all of your workouts from your computer! Go back to the main page, and there should be a link at the bottom. Go to this link on your computer, make the necesary changes and save. To apply the changes to the Pebble, simply go back to the workout manager from your phone and click save.  </p>  </li>
-                    <li>  I workout without my phone. Is there anyway to save the workouts directly to Pebble?
-                        <p> No, but yes. Due to limitations with Pebble hardware, there is currently no way to save all of your workouts directly to the Pebble. Starting with v4.0 however, once you start a workout the Pebble will have all the moves and your phone is no longer needed. </p>  </li>
+                        <p> Yes, you can manage all of your workouts from your computer! Go back to the main page, and there should be a link at the bottom. Go to this link on your computer, make the necesary changes and save.  </p>  </li>
+                    <li>  Does my phone need to be connected during a workout?
+                        <p> No! You will need to have your phone connected when you make changes to your workouts so that they can sync to your watch. To resync your workouts simply open the app on your watch while your phone is connected. After that you may use any workout without your phone. </p>  </li>
                     <li>  Can I have moves that are longer than 15 minutes?
                         <p> Yes! To make a longer move slide the minutes slider all the way to the right and let go, you can then drag it to the right again for a longer move. Repeat this for moves up to 90 minutes.  </p>  </li>
                     <li>  How do I pause/resume a timer?
-                        <p> While a timer is running, simply press the middle button to pause or resume. </p>  </li>
+                        <p> While a timer is running, simply press on the screen to pause or resume </p>  </li>
                      <li> Can I suggest a new feature?
-                        <p> Yes, please. That would be awesome. If you have any ideas to improve this app, or ideas for another app please email me at <a href="mailto:trujano.fernando@gmail.com?subject=App Suggestion"> trujano.fernando@gmail.com </a>  </p>  </li>
+                        <p> Yes, please. That would be awesome. If you have any ideas to improve this app, or ideas for another app please email me at <a href="mailto:trujano.fernando@gmail.com?subject=Wear App Suggestion"> trujano.fernando@gmail.com </a>  </p>  </li>
                     <li> Something went wrong!
                         <p> That is not a question. If you think you found a bug, please <a href="mailto:trujano.fernando@gmail.com?subject=Custom Workout Timer bug!"> email </a> me the details. Check below for known issues and how to fix them.   </p>  </li>
+<!--
                     <li> Who are you?
-
                         <p> Hi, I am <a href="http://www.fernandotrujano.com"> Fernando Trujano </a>, a happy Pebble owner and college junior. If you like this app please give it a "heart" on the Pebble appstore.I smile everytime I see the count go up :)  </p>  </li>
                     <li> Can I buy you a beer?
                         <p> <strike> Not legally, at least not until next year. </strike> If you would like to support my work you can donate using <a href="https://www.paypal.me/trujano">Paypal</a> or with a credit/debit card with <a href="https://cash.me/$trujano"> Square Cash. </a> </p>
-                    </li>
+                    </li> -->
                 </ul>
                 <hr>
                 <h2> Known Issues </h2>
                 <ul data-role="listview">
-                    <li> I'm stuck on the loading screen
-                        <p><strong> Temporary Fix: </strong> Wait a couple of seconds and check that your Pebble is connected to the phone. Then try again.  </p> </li>
-                    <li> App crashes (returns to homescreen) after selecting workout
-                        <p><strong> Temporary Fix: </strong> This is most likeley because the Pebble ran out of memory while trying to load the workout. In my tests, classic Pebbles could hold around 70 moves while Pebble Times could hold 150+. Try splitting up your moves to different workouts. If this happens with workouts of normal length, please let me know!</p> </li>
+                    <li> New workouts don't show up on my watch
+                        <p><strong> Temporary Fix: </strong> Make sure your phone is connected and open the app from your watch.</p> </li>
                 </ul>
             </div>
         </div>
@@ -97,10 +93,11 @@
 
                         <fieldset class="ui-grid-a">
                             <div class="ui-block-a" style="width:80px" > <label for="move-name">Add Move: </label>  </div>
-                            <div class="move-type-selector" >
+<!-- Rep moves comming soon -->
+<!--                             <div class="move-type-selector" >
                                 <label for="move-type" style="display:inline-block">Move type: </label>
                                 <input type="checkbox" data-role="flipswitch" name="move-type" id="move-type" data-on-text="Reps" data-off-text="Time" data-wrapper-class="custom-label-flipswitch" >
-                            </div>
+                            </div> -->
                         </fieldset>
                         <input type="text" id="move-name" data-clear-btn="true">
                         <div id="min-slider-container">
@@ -140,10 +137,10 @@
 
                 <label>Name</label>
                 <input type="text" data-clear-btn="true" name="edit-title" id="edit-title" value="5">
-                <div class="move-type-selector" style="float: left" >
+<!--                 <div class="move-type-selector" style="float: left" >
                     <label for="edit-move-type" style="display:inline-block">Move type: </label>
                     <input type="checkbox" data-role="flipswitch" name="move-type" id="edit-move-type" data-on-text="Reps" data-off-text="Time" data-wrapper-class="custom-label-flipswitch" >
-                </div>
+                </div> -->
                 <span id="edit-minute-container">
                     <label for="slider-2">Minutes</label>
                     <input type="range"  class="slider" id="edit-minute-slider" data-highlight="true" min="0" max="60" value="5">

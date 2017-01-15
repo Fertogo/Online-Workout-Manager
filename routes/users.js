@@ -11,14 +11,15 @@ app.use(bodyParser.json());
 router.get('/:userid/:version', userController.getWorkouts);
 
 // Show the workout-manager homepage
-router.get('/home', function(req, res, next){
+router.get('/home'/*?info=id,version*/, function(req, res, next){
   res.render("workout-manager", {});
 });
 
-/* Save users workout */
+/* Save user's workout */
 router.put('/workout/save', userController.saveWorkouts);
 
 // Mark a workout as completed
-router.post('/workout/completed/:id/:name/:timelineId', userController.completeWorkout);
+// Comming soon! TODO
+// router.post('/workout/completed/:id/:name/:timelineId', userController.completeWorkout);
 
 module.exports = router;
