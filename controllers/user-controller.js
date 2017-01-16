@@ -64,8 +64,8 @@ UserController.completeWorkout = function(req, res, next) {
     console.log("workout completed request");
       var userId = req.params.id,
           workoutName = req.params.name,
-          date = Date.now(), //TODO send Date in request
-          timelineId = req.params.timelineId;
+          date = Date.now();
+
     console.log(userId);
     console.log(workoutName);
 
@@ -80,7 +80,7 @@ UserController.completeWorkout = function(req, res, next) {
             return res.sendStatus(404);
         }
         // console.log(user)
-        user.completeWorkout(workoutName, date, timelineId, function(err){
+        user.completeWorkout(workoutName, date, function(err){
             if (!err){
                 console.log("workout marked as completed");
                 res.send("ok");

@@ -176,7 +176,7 @@ $(document).ready(function(){
     $('.slider').slider();
 
     $.ajax({
-      url: '/user/' + token + '/' + version,
+      url: '/user/getWorkouts/' + token,
       complete: function (response) {
         if (response.responseText){
             console.log("got a response! ");

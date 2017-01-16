@@ -8,7 +8,7 @@ var express = require('express'),
 app.use(bodyParser.json());
 
 // Get workouts for :userid
-router.get('/:userid/:version', userController.getWorkouts);
+router.get('/getWorkouts/:userid', userController.getWorkouts);
 
 // Show the workout-manager homepage
 router.get('/home'/*?info=id,version*/, function(req, res, next){
@@ -19,7 +19,6 @@ router.get('/home'/*?info=id,version*/, function(req, res, next){
 router.put('/workout/save', userController.saveWorkouts);
 
 // Mark a workout as completed
-// Comming soon! TODO
-// router.post('/workout/completed/:id/:name/:timelineId', userController.completeWorkout);
+router.post('/completeWorkout/:id/:name/', userController.completeWorkout);
 
 module.exports = router;

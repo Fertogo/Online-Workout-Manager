@@ -63,21 +63,17 @@ userSchema.method('saveWorkouts', function(workouts, callback){
 });
 
 //mark a workout as completed
-userSchema.method('completeWorkout', function(workoutName, date, timelineId ,callback){
+userSchema.method('completeWorkout', function(workoutName, date ,callback){
     console.log("User Model -> completeWorkout");
     var foundWorkout = false;
     this.lastActiveDate = Date.now();
-    this.timelineId = timelineId;
+
     for (var i=0; i < this.workouts.length; i++){
         if (this.workouts[i].title == workoutName){
             foundWorkout = true;
             var workout = this.workouts[i];
             workout.datesCompleted.push(date);
-            if (this.timelineId && this.timelineId != 'none') {
-                var body = this.getPinBody(workout);
-                console.log(body);
-                this.sendTimelinePin(timelineId, "Workout Finished!", workoutName, body);
-            }
+
             this.save(callback);
         }
     }
