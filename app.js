@@ -17,7 +17,7 @@ var app = express();
 
 var mongoose = require('mongoose');
 
-db = mongoose.connect( process.env.MONGOLAB_URI_OWM || "mongodb://localhost:27017/owm");
+db = mongoose.connect( process.env.MONGO_URI_OWM || "mongodb://localhost:27017/owm");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
